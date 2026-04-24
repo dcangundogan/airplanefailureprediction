@@ -1,0 +1,9 @@
+Component,TCN-GRU + XGBoost,TCN-BiGRU + XGBoost
+Topology,Parallel TCN and GRU branches,Sequential TCN -> BiGRU -> attention
+TCN normalization,BatchNorm1d,WeightNorm
+TCN channels,"[64, 128, 128]","[64, 128, 128, 64]"
+Recurrent unit,"Bidirectional GRU, hidden 64","Bidirectional GRU, hidden 128"
+Window length,30 cycles,40 cycles
+Deep embedding,128 dimensions,128 dimensions
+XGBoost input,Embedding + handcrafted statistics,Embedding only
+Early stopping,Validation loss,Validation F1

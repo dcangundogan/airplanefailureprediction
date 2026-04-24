@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="560" viewBox="0 0 960 560">
+<style>
+text{font-family:Arial,Helvetica,sans-serif;fill:#1f2933}
+.title{font-size:22px;font-weight:700}
+.axis{font-size:12px}
+.label{font-size:13px}
+.small{font-size:11px}
+.box{fill:#f8fafc;stroke:#1f2933;stroke-width:1.4}
+</style>
+<rect width="100%" height="100%" fill="white"/>
+<text x="480.0" y="34" text-anchor="middle" class="title">Test-Last ROC-AUC Comparison</text>
+<text x="18" y="264.0" transform="rotate(-90 18 264.0)" class="axis">ROC-AUC</text>
+<line x1="78" y1="64" x2="78" y2="464" stroke="#111827"/>
+<line x1="78" y1="464" x2="924" y2="464" stroke="#111827"/>
+<line x1="78" y1="464.0" x2="924" y2="464.0" stroke="#e5e7eb"/>
+<text x="68" y="468.0" text-anchor="end" class="small">0.0</text>
+<line x1="78" y1="384.0" x2="924" y2="384.0" stroke="#e5e7eb"/>
+<text x="68" y="388.0" text-anchor="end" class="small">0.2</text>
+<line x1="78" y1="304.0" x2="924" y2="304.0" stroke="#e5e7eb"/>
+<text x="68" y="308.0" text-anchor="end" class="small">0.4</text>
+<line x1="78" y1="224.0" x2="924" y2="224.0" stroke="#e5e7eb"/>
+<text x="68" y="228.0" text-anchor="end" class="small">0.6</text>
+<line x1="78" y1="144.0" x2="924" y2="144.0" stroke="#e5e7eb"/>
+<text x="68" y="148.0" text-anchor="end" class="small">0.8</text>
+<line x1="78" y1="64.0" x2="924" y2="64.0" stroke="#e5e7eb"/>
+<text x="68" y="68.0" text-anchor="end" class="small">1.1</text>
+<rect x="135.8" y="87.5" width="30.0" height="376.5" fill="#2563eb"/>
+<text x="151.8" y="83.5" text-anchor="middle" class="small">0.988</text>
+<rect x="167.8" y="86.3" width="30.0" height="377.7" fill="#059669"/>
+<text x="183.8" y="82.3" text-anchor="middle" class="small">0.992</text>
+<rect x="199.8" y="84.3" width="30.0" height="379.7" fill="#dc2626"/>
+<text x="215.8" y="80.3" text-anchor="middle" class="small">0.997</text>
+<text x="183.8" y="488" text-anchor="middle" class="label">FD001</text>
+<rect x="347.2" y="95.5" width="30.0" height="368.5" fill="#2563eb"/>
+<text x="363.2" y="91.5" text-anchor="middle" class="small">0.967</text>
+<rect x="379.2" y="90.3" width="30.0" height="373.7" fill="#059669"/>
+<text x="395.2" y="86.3" text-anchor="middle" class="small">0.981</text>
+<rect x="411.2" y="83.8" width="30.0" height="380.2" fill="#dc2626"/>
+<text x="427.2" y="79.8" text-anchor="middle" class="small">0.998</text>
+<text x="395.2" y="488" text-anchor="middle" class="label">FD002</text>
+<rect x="558.8" y="85.7" width="30.0" height="378.3" fill="#2563eb"/>
+<text x="574.8" y="81.7" text-anchor="middle" class="small">0.993</text>
+<rect x="590.8" y="84.7" width="30.0" height="379.3" fill="#059669"/>
+<text x="606.8" y="80.7" text-anchor="middle" class="small">0.996</text>
+<rect x="622.8" y="83.5" width="30.0" height="380.5" fill="#dc2626"/>
+<text x="638.8" y="79.5" text-anchor="middle" class="small">0.999</text>
+<text x="606.8" y="488" text-anchor="middle" class="label">FD003</text>
+<rect x="770.2" y="96.3" width="30.0" height="367.7" fill="#2563eb"/>
+<text x="786.2" y="92.3" text-anchor="middle" class="small">0.965</text>
+<rect x="802.2" y="94.1" width="30.0" height="369.9" fill="#059669"/>
+<text x="818.2" y="90.1" text-anchor="middle" class="small">0.971</text>
+<rect x="834.2" y="89.7" width="30.0" height="374.3" fill="#dc2626"/>
+<text x="850.2" y="85.7" text-anchor="middle" class="small">0.983</text>
+<text x="818.2" y="488" text-anchor="middle" class="label">FD004</text>
+<rect x="78" y="518" width="13" height="13" fill="#2563eb"/>
+<text x="96" y="529" class="small">TCN-GRU + XGBoost</text>
+<rect x="215" y="518" width="13" height="13" fill="#059669"/>
+<text x="233" y="529" class="small">PatchTST + XGBoost</text>
+<rect x="359" y="518" width="13" height="13" fill="#dc2626"/>
+<text x="377" y="529" class="small">TCN-BiGRU + XGBoost</text>
+</svg>

@@ -1,0 +1,20 @@
+Hyperparameter,Value
+Sequence length,40 cycles
+Batch size,256
+Epochs,60
+Patience,12
+Learning rate,1e-3
+Weight decay,1e-4
+Focal gamma,2.0
+TCN channels,"[64, 128, 128, 64]"
+GRU hidden size,128 bidirectional
+GRU layers,2
+GRU dropout,0.30
+Embedding size,128
+XGBoost rounds,800
+XGBoost learning rate,0.03
+XGBoost max depth,6
+XGBoost subsample,0.8
+XGBoost colsample_bytree,0.8
+XGBoost min_child_weight,5
+XGBoost early stopping,40 rounds

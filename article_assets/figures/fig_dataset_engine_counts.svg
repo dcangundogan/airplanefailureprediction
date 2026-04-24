@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="560" viewBox="0 0 960 560">
+<style>
+text{font-family:Arial,Helvetica,sans-serif;fill:#1f2933}
+.title{font-size:22px;font-weight:700}
+.axis{font-size:12px}
+.label{font-size:13px}
+.small{font-size:11px}
+.box{fill:#f8fafc;stroke:#1f2933;stroke-width:1.4}
+</style>
+<rect width="100%" height="100%" fill="white"/>
+<text x="480.0" y="34" text-anchor="middle" class="title">CMAPSS Engine Counts by Dataset</text>
+<text x="18" y="264.0" transform="rotate(-90 18 264.0)" class="axis">Engines</text>
+<line x1="78" y1="64" x2="78" y2="464" stroke="#111827"/>
+<line x1="78" y1="464" x2="924" y2="464" stroke="#111827"/>
+<line x1="78" y1="464.0" x2="924" y2="464.0" stroke="#e5e7eb"/>
+<text x="68" y="468.0" text-anchor="end" class="small">0.0</text>
+<line x1="78" y1="384.0" x2="924" y2="384.0" stroke="#e5e7eb"/>
+<text x="68" y="388.0" text-anchor="end" class="small">56.0</text>
+<line x1="78" y1="304.0" x2="924" y2="304.0" stroke="#e5e7eb"/>
+<text x="68" y="308.0" text-anchor="end" class="small">112.0</text>
+<line x1="78" y1="224.0" x2="924" y2="224.0" stroke="#e5e7eb"/>
+<text x="68" y="228.0" text-anchor="end" class="small">168.0</text>
+<line x1="78" y1="144.0" x2="924" y2="144.0" stroke="#e5e7eb"/>
+<text x="68" y="148.0" text-anchor="end" class="small">224.0</text>
+<line x1="78" y1="64.0" x2="924" y2="64.0" stroke="#e5e7eb"/>
+<text x="68" y="68.0" text-anchor="end" class="small">280.0</text>
+<rect x="151.8" y="321.1" width="30.0" height="142.9" fill="#2563eb"/>
+<text x="167.8" y="317.1" text-anchor="middle" class="small">100.000</text>
+<rect x="183.8" y="321.1" width="30.0" height="142.9" fill="#059669"/>
+<text x="199.8" y="317.1" text-anchor="middle" class="small">100.000</text>
+<text x="183.8" y="488" text-anchor="middle" class="label">FD001</text>
+<rect x="363.2" y="92.6" width="30.0" height="371.4" fill="#2563eb"/>
+<text x="379.2" y="88.6" text-anchor="middle" class="small">260.000</text>
+<rect x="395.2" y="94.0" width="30.0" height="370.0" fill="#059669"/>
+<text x="411.2" y="90.0" text-anchor="middle" class="small">259.000</text>
+<text x="395.2" y="488" text-anchor="middle" class="label">FD002</text>
+<rect x="574.8" y="321.1" width="30.0" height="142.9" fill="#2563eb"/>
+<text x="590.8" y="317.1" text-anchor="middle" class="small">100.000</text>
+<rect x="606.8" y="321.1" width="30.0" height="142.9" fill="#059669"/>
+<text x="622.8" y="317.1" text-anchor="middle" class="small">100.000</text>
+<text x="606.8" y="488" text-anchor="middle" class="label">FD003</text>
+<rect x="786.2" y="108.3" width="30.0" height="355.7" fill="#2563eb"/>
+<text x="802.2" y="104.3" text-anchor="middle" class="small">249.000</text>
+<rect x="818.2" y="109.7" width="30.0" height="354.3" fill="#059669"/>
+<text x="834.2" y="105.7" text-anchor="middle" class="small">248.000</text>
+<text x="818.2" y="488" text-anchor="middle" class="label">FD004</text>
+<rect x="78" y="518" width="13" height="13" fill="#2563eb"/>
+<text x="96" y="529" class="small">Train engines</text>
+<rect x="187" y="518" width="13" height="13" fill="#059669"/>
+<text x="205" y="529" class="small">Test engines</text>
+</svg>

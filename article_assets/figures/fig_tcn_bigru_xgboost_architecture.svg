@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1060" height="420" viewBox="0 0 1060 420">
+<style>
+text{font-family:Arial,Helvetica,sans-serif;fill:#1f2933}
+.title{font-size:22px;font-weight:700}
+.axis{font-size:12px}
+.label{font-size:13px}
+.small{font-size:11px}
+.box{fill:#f8fafc;stroke:#1f2933;stroke-width:1.4}
+</style>
+<rect width="100%" height="100%" fill="white"/>
+<defs><marker id="arrow" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0,0 L10,4 L0,8 z" fill="#111827"/></marker></defs>
+<text x="530.0" y="34" text-anchor="middle" class="title">TCN-BiGRU + XGBoost Pipeline</text>
+<rect x="40" y="120" rx="6" ry="6" width="130" height="74" class="box"/>
+<text x="105.0" y="151" text-anchor="middle" class="label" font-weight="700">Sensor window</text>
+<text x="105.0" y="172" text-anchor="middle" class="small">40 cycles x F</text>
+<rect x="210" y="120" rx="6" ry="6" width="150" height="74" class="box"/>
+<text x="285.0" y="151" text-anchor="middle" class="label" font-weight="700">Causal TCN</text>
+<text x="285.0" y="172" text-anchor="middle" class="small">dilated convs</text>
+<rect x="400" y="120" rx="6" ry="6" width="150" height="74" class="box"/>
+<text x="475.0" y="151" text-anchor="middle" class="label" font-weight="700">BiGRU</text>
+<text x="475.0" y="172" text-anchor="middle" class="small">2 layers, h=128</text>
+<rect x="590" y="120" rx="6" ry="6" width="140" height="74" class="box"/>
+<text x="660.0" y="151" text-anchor="middle" class="label" font-weight="700">Attention</text>
+<text x="660.0" y="172" text-anchor="middle" class="small">temporal pooling</text>
+<rect x="770" y="120" rx="6" ry="6" width="120" height="74" class="box"/>
+<text x="830.0" y="151" text-anchor="middle" class="label" font-weight="700">Embedding</text>
+<text x="830.0" y="172" text-anchor="middle" class="small">128-D</text>
+<rect x="930" y="120" rx="6" ry="6" width="90" height="74" class="box"/>
+<text x="975.0" y="151" text-anchor="middle" class="label" font-weight="700">XGBoost</text>
+<text x="975.0" y="172" text-anchor="middle" class="small">failure prob.</text>
+<line x1="178" y1="157.0" x2="198" y2="157.0" stroke="#111827" stroke-width="1.8" marker-end="url(#arrow)"/>
+<line x1="368" y1="157.0" x2="388" y2="157.0" stroke="#111827" stroke-width="1.8" marker-end="url(#arrow)"/>
+<line x1="558" y1="157.0" x2="578" y2="157.0" stroke="#111827" stroke-width="1.8" marker-end="url(#arrow)"/>
+<line x1="738" y1="157.0" x2="758" y2="157.0" stroke="#111827" stroke-width="1.8" marker-end="url(#arrow)"/>
+<line x1="898" y1="157.0" x2="918" y2="157.0" stroke="#111827" stroke-width="1.8" marker-end="url(#arrow)"/>
+<text x="40" y="260" class="label" font-weight="700">Training objective</text>
+<text x="40" y="286" class="label">Focal-loss deep classifier is trained first; the learned embedding is then used by XGBoost.</text>
+<text x="40" y="326" class="label" font-weight="700">Decision rule</text>
+<text x="40" y="352" class="label">A validation-optimized probability threshold converts XGBoost scores into normal vs near-failure labels.</text>
+</svg>

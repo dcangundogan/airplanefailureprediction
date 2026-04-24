@@ -1,0 +1,19 @@
+\begin{table}[!t]
+\centering
+\caption{Architectural differences between the prior TCN-GRU baseline and TCN-BiGRU method.}
+\label{tab:architecture\_comparison}
+\begin{tabular}{lcc}
+\hline
+Component & TCN-GRU + XGBoost & TCN-BiGRU + XGBoost \\
+\hline
+Topology & Parallel TCN and GRU branches & Sequential TCN $\rightarrow$ BiGRU $\rightarrow$ attention \\
+TCN normalization & BatchNorm1d & WeightNorm \\
+TCN channels & [64, 128, 128] & [64, 128, 128, 64] \\
+Recurrent unit & Bidirectional GRU, hidden 64 & Bidirectional GRU, hidden 128 \\
+Window length & 30 cycles & 40 cycles \\
+Deep embedding & 128 dimensions & 128 dimensions \\
+XGBoost input & Embedding + handcrafted statistics & Embedding only \\
+Early stopping & Validation loss & Validation F1 \\
+\hline
+\end{tabular}
+\end{table}

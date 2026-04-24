@@ -1,0 +1,137 @@
+% abgru_regression_results.tex
+\begin{table}[!t]
+\centering
+\caption{ABGRU RUL regression results reported in the existing notebook.}
+\label{tab:abgru\_regression}
+\begin{tabular}{lcccc}
+\hline
+Dataset & RMSE & MAE & R2 & PHM score \\
+\hline
+FD001 & 13.5400 & 10.3200 & 0.8938 & 279.8500 \\
+FD002 & 31.6900 & 21.3600 & 0.6527 & 25719.0900 \\
+FD003 & 13.3600 & 9.7300 & 0.8958 & 242.9700 \\
+FD004 & 39.6600 & 26.0500 & 0.4709 & 1126946.5000 \\
+\hline
+\end{tabular}
+\end{table}
+
+% architecture_comparison.tex
+\begin{table}[!t]
+\centering
+\caption{Architectural differences between the prior TCN-GRU baseline and TCN-BiGRU method.}
+\label{tab:architecture\_comparison}
+\begin{tabular}{lcc}
+\hline
+Component & TCN-GRU + XGBoost & TCN-BiGRU + XGBoost \\
+\hline
+Topology & Parallel TCN and GRU branches & Sequential TCN $\rightarrow$ BiGRU $\rightarrow$ attention \\
+TCN normalization & BatchNorm1d & WeightNorm \\
+TCN channels & [64, 128, 128] & [64, 128, 128, 64] \\
+Recurrent unit & Bidirectional GRU, hidden 64 & Bidirectional GRU, hidden 128 \\
+Window length & 30 cycles & 40 cycles \\
+Deep embedding & 128 dimensions & 128 dimensions \\
+XGBoost input & Embedding + handcrafted statistics & Embedding only \\
+Early stopping & Validation loss & Validation F1 \\
+\hline
+\end{tabular}
+\end{table}
+
+% dataset_characteristics.tex
+\begin{table}[!t]
+\centering
+\caption{NASA CMAPSS dataset characteristics.}
+\label{tab:dataset\_characteristics}
+\begin{tabular}{lccccccc}
+\hline
+Dataset & Train engines & Test engines & Train samples & Test samples & Conditions & Fault modes & Fault type \\
+\hline
+FD001 & 100 & 100 & 20631 & 13096 & 1 & 1 & HPC degradation \\
+FD002 & 260 & 259 & 53759 & 33991 & 6 & 1 & HPC degradation \\
+FD003 & 100 & 100 & 24720 & 16596 & 1 & 2 & HPC and fan degradation \\
+FD004 & 249 & 248 & 61249 & 41214 & 6 & 2 & HPC and fan degradation \\
+\hline
+\end{tabular}
+\end{table}
+
+% method_comparison_auc.tex
+\begin{table}[!t]
+\centering
+\caption{Test-last ROC-AUC comparison across CMAPSS subsets.}
+\label{tab:method\_comparison\_auc}
+\begin{tabular}{lccccc}
+\hline
+Method & FD001 & FD002 & FD003 & FD004 & Mean \\
+\hline
+TCN-GRU + XGBoost & 0.9883 & 0.9674 & 0.9931 & 0.9653 & 0.9785 \\
+PatchTST + XGBoost & 0.9915 & 0.9809 & 0.9956 & 0.9709 & 0.9847 \\
+TCN-BiGRU + XGBoost & 0.9968 & 0.9980 & 0.9988 & 0.9826 & 0.9941 \\
+\hline
+\end{tabular}
+\end{table}
+
+% method_comparison_f1.tex
+\begin{table}[!t]
+\centering
+\caption{Test-last F1-score comparison across CMAPSS subsets.}
+\label{tab:method\_comparison\_f1}
+\begin{tabular}{lccccc}
+\hline
+Method & FD001 & FD002 & FD003 & FD004 & Mean \\
+\hline
+TCN-GRU + XGBoost & 0.8095 & 0.8485 & 0.9500 & 0.7556 & 0.8409 \\
+PatchTST + XGBoost & 0.9200 & 0.8421 & 0.9268 & 0.8269 & 0.8789 \\
+ABGRU & 0.8511 & 0.9587 & 0.9756 & 0.8421 & 0.9069 \\
+TCN-BiGRU + XGBoost & 0.8889 & 0.9302 & 0.9231 & 0.8932 & 0.9089 \\
+\hline
+\end{tabular}
+\end{table}
+
+% proposed_tcn_bigru_xgboost_results.tex
+\begin{table}[!t]
+\centering
+\caption{Near-failure detection results of TCN-BiGRU + XGBoost.}
+\label{tab:proposed\_results}
+\begin{tabular}{lccccccc}
+\hline
+Dataset & Precision & Recall & F1 & ROC-AUC & PR-AUC & Specificity & TP/FP/FN \\
+\hline
+FD001 & 1.0000 & 0.8000 & 0.8889 & 0.9968 & 0.9902 & 1.0000 & 20/0/5 \\
+FD002 & 0.8696 & 1.0000 & 0.9302 & 0.9980 & 0.9938 & 0.9548 & 60/9/0 \\
+FD003 & 0.9474 & 0.9000 & 0.9231 & 0.9988 & 0.9951 & 0.9875 & 18/1/2 \\
+FD004 & 0.9020 & 0.8846 & 0.8932 & 0.9826 & 0.9469 & 0.9745 & 46/5/6 \\
+Mean & 0.9298 & 0.8962 & 0.9089 & 0.9941 & 0.9815 & 0.9792 & - \\
+\hline
+\end{tabular}
+\end{table}
+
+% tcn_bigru_hyperparameters.tex
+\begin{table}[!t]
+\centering
+\caption{Main hyperparameters of TCN-BiGRU + XGBoost.}
+\label{tab:hyperparameters}
+\begin{tabular}{lc}
+\hline
+Hyperparameter & Value \\
+\hline
+Sequence length & 40 cycles \\
+Batch size & 256 \\
+Epochs & 60 \\
+Patience & 12 \\
+Learning rate & 1e-3 \\
+Weight decay & 1e-4 \\
+Focal gamma & 2.0 \\
+TCN channels & [64, 128, 128, 64] \\
+GRU hidden size & 128 bidirectional \\
+GRU layers & 2 \\
+GRU dropout & 0.30 \\
+Embedding size & 128 \\
+XGBoost rounds & 800 \\
+XGBoost learning rate & 0.03 \\
+XGBoost max depth & 6 \\
+XGBoost subsample & 0.8 \\
+XGBoost colsample\_bytree & 0.8 \\
+XGBoost min\_child\_weight & 5 \\
+XGBoost early stopping & 40 rounds \\
+\hline
+\end{tabular}
+\end{table}

@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="620" viewBox="0 0 980 620">
+<style>
+text{font-family:Arial,Helvetica,sans-serif;fill:#1f2933}
+.title{font-size:22px;font-weight:700}
+.axis{font-size:12px}
+.label{font-size:13px}
+.small{font-size:11px}
+.box{fill:#f8fafc;stroke:#1f2933;stroke-width:1.4}
+</style>
+<rect width="100%" height="100%" fill="white"/>
+<text x="490.0" y="34" text-anchor="middle" class="title">TCN-BiGRU + XGBoost Confusion Matrices</text>
+<text x="154" y="70" text-anchor="middle" class="label" font-weight="700">FD001</text>
+<text x="154" y="254" text-anchor="middle" class="small">Predicted class</text>
+<text x="56" y="156" transform="rotate(-90 56 156)" class="small">True class</text>
+<rect x="90" y="92" width="64" height="64" fill="rgb(155,163,255)" stroke="#1f2933"/>
+<text x="122.0" y="119" text-anchor="middle" class="small">TN</text>
+<text x="122.0" y="141" text-anchor="middle" class="label" font-weight="700">75</text>
+<rect x="154" y="92" width="64" height="64" fill="rgb(245,253,255)" stroke="#1f2933"/>
+<text x="186.0" y="119" text-anchor="middle" class="small">FP</text>
+<text x="186.0" y="141" text-anchor="middle" class="label" font-weight="700">0</text>
+<rect x="90" y="156" width="64" height="64" fill="rgb(222,230,255)" stroke="#1f2933"/>
+<text x="122.0" y="183" text-anchor="middle" class="small">FN</text>
+<text x="122.0" y="205" text-anchor="middle" class="label" font-weight="700">5</text>
+<rect x="154" y="156" width="64" height="64" fill="rgb(199,207,255)" stroke="#1f2933"/>
+<text x="186.0" y="183" text-anchor="middle" class="small">TP</text>
+<text x="186.0" y="205" text-anchor="middle" class="label" font-weight="700">20</text>
+<text x="122.0" y="87" text-anchor="middle" class="small">Normal</text>
+<text x="186.0" y="87" text-anchor="middle" class="small">Near fail</text>
+<text x="82" y="124.0" text-anchor="end" class="small">Normal</text>
+<text x="82" y="188.0" text-anchor="end" class="small">Near fail</text>
+<text x="399" y="70" text-anchor="middle" class="label" font-weight="700">FD002</text>
+<text x="399" y="254" text-anchor="middle" class="small">Predicted class</text>
+<text x="301" y="156" transform="rotate(-90 301 156)" class="small">True class</text>
+<rect x="335" y="92" width="64" height="64" fill="rgb(101,109,255)" stroke="#1f2933"/>
+<text x="367.0" y="119" text-anchor="middle" class="small">TN</text>
+<text x="367.0" y="141" text-anchor="middle" class="label" font-weight="700">190</text>
+<rect x="399" y="92" width="64" height="64" fill="rgb(214,222,255)" stroke="#1f2933"/>
+<text x="431.0" y="119" text-anchor="middle" class="small">FP</text>
+<text x="431.0" y="141" text-anchor="middle" class="label" font-weight="700">9</text>
+<rect x="335" y="156" width="64" height="64" fill="rgb(245,253,255)" stroke="#1f2933"/>
+<text x="367.0" y="183" text-anchor="middle" class="small">FN</text>
+<text x="367.0" y="205" text-anchor="middle" class="label" font-weight="700">0</text>
+<rect x="399" y="156" width="64" height="64" fill="rgb(164,172,255)" stroke="#1f2933"/>
+<text x="431.0" y="183" text-anchor="middle" class="small">TP</text>
+<text x="431.0" y="205" text-anchor="middle" class="label" font-weight="700">60</text>
+<text x="367.0" y="87" text-anchor="middle" class="small">Normal</text>
+<text x="431.0" y="87" text-anchor="middle" class="small">Near fail</text>
+<text x="327" y="124.0" text-anchor="end" class="small">Normal</text>
+<text x="327" y="188.0" text-anchor="end" class="small">Near fail</text>
+<text x="154" y="320" text-anchor="middle" class="label" font-weight="700">FD003</text>
+<text x="154" y="504" text-anchor="middle" class="small">Predicted class</text>
+<text x="56" y="406" transform="rotate(-90 56 406)" class="small">True class</text>
+<rect x="90" y="342" width="64" height="64" fill="rgb(152,160,255)" stroke="#1f2933"/>
+<text x="122.0" y="369" text-anchor="middle" class="small">TN</text>
+<text x="122.0" y="391" text-anchor="middle" class="label" font-weight="700">79</text>
+<rect x="154" y="342" width="64" height="64" fill="rgb(235,243,255)" stroke="#1f2933"/>
+<text x="186.0" y="369" text-anchor="middle" class="small">FP</text>
+<text x="186.0" y="391" text-anchor="middle" class="label" font-weight="700">1</text>
+<rect x="90" y="406" width="64" height="64" fill="rgb(231,239,255)" stroke="#1f2933"/>
+<text x="122.0" y="433" text-anchor="middle" class="small">FN</text>
+<text x="122.0" y="455" text-anchor="middle" class="label" font-weight="700">2</text>
+<rect x="154" y="406" width="64" height="64" fill="rgb(201,209,255)" stroke="#1f2933"/>
+<text x="186.0" y="433" text-anchor="middle" class="small">TP</text>
+<text x="186.0" y="455" text-anchor="middle" class="label" font-weight="700">18</text>
+<text x="122.0" y="337" text-anchor="middle" class="small">Normal</text>
+<text x="186.0" y="337" text-anchor="middle" class="small">Near fail</text>
+<text x="82" y="374.0" text-anchor="end" class="small">Normal</text>
+<text x="82" y="438.0" text-anchor="end" class="small">Near fail</text>
+<text x="399" y="320" text-anchor="middle" class="label" font-weight="700">FD004</text>
+<text x="399" y="504" text-anchor="middle" class="small">Predicted class</text>
+<text x="301" y="406" transform="rotate(-90 301 406)" class="small">True class</text>
+<rect x="335" y="342" width="64" height="64" fill="rgb(100,108,255)" stroke="#1f2933"/>
+<text x="367.0" y="369" text-anchor="middle" class="small">TN</text>
+<text x="367.0" y="391" text-anchor="middle" class="label" font-weight="700">191</text>
+<rect x="399" y="342" width="64" height="64" fill="rgb(222,230,255)" stroke="#1f2933"/>
+<text x="431.0" y="369" text-anchor="middle" class="small">FP</text>
+<text x="431.0" y="391" text-anchor="middle" class="label" font-weight="700">5</text>
+<rect x="335" y="406" width="64" height="64" fill="rgb(220,228,255)" stroke="#1f2933"/>
+<text x="367.0" y="433" text-anchor="middle" class="small">FN</text>
+<text x="367.0" y="455" text-anchor="middle" class="label" font-weight="700">6</text>
+<rect x="399" y="406" width="64" height="64" fill="rgb(174,182,255)" stroke="#1f2933"/>
+<text x="431.0" y="433" text-anchor="middle" class="small">TP</text>
+<text x="431.0" y="455" text-anchor="middle" class="label" font-weight="700">46</text>
+<text x="367.0" y="337" text-anchor="middle" class="small">Normal</text>
+<text x="431.0" y="337" text-anchor="middle" class="small">Near fail</text>
+<text x="327" y="374.0" text-anchor="end" class="small">Normal</text>
+<text x="327" y="438.0" text-anchor="end" class="small">Near fail</text>
+<text x="610" y="108" class="label" font-weight="700">Labels</text>
+<text x="610" y="136" class="small">TN: Normal-&gt;Normal</text>
+<text x="610" y="162" class="small">FP: Normal-&gt;Near failure</text>
+<text x="610" y="188" class="small">FN: Near failure-&gt;Normal</text>
+<text x="610" y="214" class="small">TP: Near failure-&gt;Near failure</text>
+</svg>
