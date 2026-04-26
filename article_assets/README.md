@@ -12,10 +12,13 @@ python article_assets/generate_ieee_assets.py
 Outputs:
 
 - `ieee_results_report.md`: concise result narrative, comparison notes, and figure captions.
+- `draft_ieee_article.md`: fillable article draft in Markdown.
+- `draft_ieee_article.tex`: fillable IEEE-style LaTeX draft.
 - `ieee_tables_all.tex`: all LaTeX table snippets in one file.
 - `index.html`: quick browser preview of generated figures and table links.
 - `tables/`: each table as `.csv`, `.md`, and `.tex`.
 - `figures/`: standalone SVG figures suitable for conversion to PDF/PNG.
+  - `fig_tcn_bigru_xgboost_architecture_detailed.svg` is the detailed architecture from `tcn_bigru_xgboost_cmapss.ipynb`.
 
 The model result numbers are taken from existing executed notebook outputs. The
 dataset counts are computed directly from the local `data/` files.

@@ -403,6 +403,81 @@ def architecture_svg(path: Path) -> None:
     save_svg(path, lines)
 
 
+def detailed_architecture_svg(path: Path) -> None:
+    w, h = 1380, 820
+    lines = svg_header(w, h)
+    lines.insert(
+        10,
+        '<defs><marker id="arrow-detail" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0,0 L10,4 L0,8 z" fill="#111827"/></marker></defs>',
+    )
+    lines.append(f'<text x="{w/2}" y="36" text-anchor="middle" class="title">Detailed TCN-BiGRU + XGBoost Architecture</text>')
+    lines.append('<text x="690" y="62" text-anchor="middle" class="small">Based on tcn_bigru_xgboost_cmapss.ipynb</text>')
+
+    def box(x, y, bw, bh, title, sub="", fill="#f8fafc", stroke="#1f2933"):
+        lines.append(f'<rect x="{x}" y="{y}" rx="7" ry="7" width="{bw}" height="{bh}" fill="{fill}" stroke="{stroke}" stroke-width="1.4"/>')
+        lines.append(f'<text x="{x + bw/2}" y="{y + 28}" text-anchor="middle" class="label" font-weight="700">{html.escape(title)}</text>')
+        if sub:
+            for i, part in enumerate(sub.split("\\n")):
+                lines.append(f'<text x="{x + bw/2}" y="{y + 50 + i*17}" text-anchor="middle" class="small">{html.escape(part)}</text>')
+
+    def arrow(x1, y1, x2, y2):
+        lines.append(f'<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" stroke="#111827" stroke-width="1.8" marker-end="url(#arrow-detail)"/>')
+
+    # Data and preprocessing
+    box(36, 115, 158, 92, "Raw CMAPSS", "train/test/RUL files\nFD001-FD004", "#eef2ff")
+    box(236, 115, 190, 92, "RUL + Labels", "RUL=max_cycle-cycle\nnear failure: RUL&lt;30", "#eef2ff")
+    box(468, 115, 200, 92, "Preprocessing", "valid sensor/op features\nstandardized values", "#eef2ff")
+    box(710, 115, 186, 92, "Sliding Windows", "seq_len=40, stride=1\nlabel from final cycle", "#eef2ff")
+    arrow(194, 161, 236, 161)
+    arrow(426, 161, 468, 161)
+    arrow(668, 161, 710, 161)
+
+    # Deep encoder panel
+    lines.append('<rect x="36" y="255" width="1010" height="330" rx="10" ry="10" fill="#ffffff" stroke="#64748b" stroke-dasharray="6 4"/>')
+    lines.append('<text x="54" y="282" class="label" font-weight="700">Deep temporal encoder trained with focal loss</text>')
+
+    box(64, 326, 132, 92, "Input tensor", "B x 40 x F", "#f0fdf4")
+    box(235, 326, 155, 92, "Permute", "B x F x 40\nfor Conv1D", "#f0fdf4")
+    box(430, 294, 172, 150, "Causal TCN", "4 residual blocks\nkernel=3, dropout=0.2\nWeightNorm convs\ndilations=1,2,4,8", "#ecfeff")
+    box(642, 294, 156, 150, "BiGRU", "2 layers\nhidden=128\nbidirectional\noutput dim=256", "#fff7ed")
+    box(838, 326, 150, 92, "Attention Pool", "Linear(256,1)\nsoftmax over time", "#fef2f2")
+    arrow(196, 372, 235, 372)
+    arrow(390, 372, 430, 372)
+    arrow(602, 372, 642, 372)
+    arrow(798, 372, 838, 372)
+
+    # TCN internals
+    tcn_x, tcn_y = 442, 468
+    for i, (ch_in, ch_out, dil) in enumerate([("F", "64", 1), ("64", "128", 2), ("128", "128", 4), ("128", "64", 8)]):
+        x = tcn_x + i * 138
+        box(x, tcn_y, 112, 72, f"TCN block {i+1}", f"{ch_in}->{ch_out}\nd={dil}", "#ecfeff")
+        if i < 3:
+            arrow(x + 112, tcn_y + 36, x + 138, tcn_y + 36)
+    lines.append('<text x="704" y="560" text-anchor="middle" class="small">Each block: WeightNorm Conv1D -> ReLU -> Dropout -> WeightNorm Conv1D -> ReLU -> Dropout + residual</text>')
+
+    # Projection and XGBoost
+    box(1080, 296, 190, 96, "Projection", "Linear(256,128)\nLayerNorm + GELU\nDropout=0.2", "#f5f3ff")
+    box(1080, 436, 190, 86, "Encoder Head", "Linear(128,1)\nused during training", "#f5f3ff")
+    arrow(988, 372, 1080, 344)
+    arrow(1175, 392, 1175, 436)
+    lines.append('<text x="1168" y="566" text-anchor="middle" class="small">Best encoder selected by validation F2</text>')
+
+    box(64, 640, 180, 92, "Embedding Extraction", "model.embed(x)\n128-D vectors", "#f8fafc")
+    box(292, 640, 196, 92, "GridSearchCV", "3-fold search\nXGBoost params", "#f8fafc")
+    box(536, 640, 190, 92, "XGBoost Train", "binary:logistic\nhist tree method\nscale_pos_weight", "#f8fafc")
+    box(774, 640, 198, 92, "Threshold Search", "validation probability\nF-beta, beta=2\nmin_precision=0.35", "#f8fafc")
+    box(1020, 640, 210, 92, "Final Decision", "normal / near failure\nmetrics on test-last", "#f8fafc")
+    arrow(244, 686, 292, 686)
+    arrow(488, 686, 536, 686)
+    arrow(726, 686, 774, 686)
+    arrow(972, 686, 1020, 686)
+    arrow(1175, 522, 154, 640)
+
+    # Config note
+    box(940, 110, 330, 108, "Key Configuration", "epochs=60, batch_size=256, lr=1e-3\nweight_decay=1e-4, patience=12\nfocal_gamma=2.5, pos_weight_boost=2.0\nXGBoost rounds=800, early stop=40", "#fffbeb", "#92400e")
+    save_svg(path, lines)
+
+
 def dataset_distribution_svg(path: Path, stats: list[dict[str, object]]) -> None:
     series = {
         "Train engines": [float(s["train_engines"]) for s in stats],
@@ -659,6 +734,7 @@ def main() -> None:
     )
 
     architecture_svg(FIG_DIR / "fig_tcn_bigru_xgboost_architecture.svg")
+    detailed_architecture_svg(FIG_DIR / "fig_tcn_bigru_xgboost_architecture_detailed.svg")
     dataset_distribution_svg(FIG_DIR / "fig_dataset_engine_counts.svg", stats)
     grouped_bar_svg(
         FIG_DIR / "fig_proposed_cross_dataset_metrics.svg",
