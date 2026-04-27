@@ -1,0 +1,15 @@
+| Item | Value |
+| --- | --- |
+| Task | Supervised near-failure classification |
+| Near-failure label | RUL <= 30 cycles |
+| Window size | 30 |
+| Validation split | 20% engines from training trajectories |
+| Operating-condition normalization | KMeans + per-condition StandardScaler, fit on train split only |
+| Condition clusters | 6 |
+| Window statistics | mean, std, slope, max, min per selected sensor |
+| Semantic encoder | sentence-transformers/all-MiniLM-L6-v2 |
+| Semantic text | Top 8 absolute-slope sensor trends |
+| Classifier | XGBoost binary logistic |
+| XGBoost estimators | 80 |
+| Probability threshold | Selected on validation split by F1-score |
+| Random seed | 42 |

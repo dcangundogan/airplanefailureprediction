@@ -1,0 +1,2 @@
+Dataset,Feature Set,RUL Threshold,Validation Threshold,Validation F1,Train Positives,Train Negatives,Feature Dim,last_accuracy,last_precision,last_recall,last_f1,last_roc_auc,last_pr_auc,last_specificity,last_tn,last_fp,last_fn,last_tp,all_accuracy,all_precision,all_recall,all_f1,all_roc_auc,all_pr_auc,all_specificity,all_tn,all_fp,all_fn,all_tp
+FD001,numeric,30,0.6092,0.93,2480,14081,75,0.97,0.9583,0.92,0.9388,0.9957,0.9868,0.9867,74,1,2,23,0.9896,0.7768,0.8283,0.8017,0.9975,0.9212,0.9938,12685,79,57,275

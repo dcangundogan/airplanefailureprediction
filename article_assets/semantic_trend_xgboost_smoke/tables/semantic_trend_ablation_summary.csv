@@ -1,0 +1,2 @@
+Feature Set,Mean_Last_F1,Mean_Last_ROC_AUC,Mean_Last_PR_AUC,Mean_All_F1,Mean_All_ROC_AUC,Mean_All_PR_AUC
+numeric,0.9388,0.9957,0.9868,0.8017,0.9975,0.9212
