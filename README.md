@@ -1,140 +1,77 @@
-# Airplane Failure Prediction — CMAPSS Turbofan Engine
+# Airplane Failure Prediction
 
-Machine learning experiments for predicting aircraft engine failures. Various deep learning and classical ML approaches are benchmarked using NASA's C-MAPSS (Commercial Modular Aero-Propulsion System Simulation) dataset.
+Machine learning experiments for aircraft turbofan failure prediction using NASA C-MAPSS data.
 
----
+## Project Layout
 
-## Dataset
-
-**NASA C-MAPSS Turbofan Engine Degradation Simulation Dataset**
-
-| Subset | Train Engines | Test Engines | Op. Conditions | Fault Modes |
-|--------|--------------|-------------|----------------|-------------|
-| FD001  | 100          | 100         | 1              | 1           |
-| FD002  | 260          | 259         | 6              | 1           |
-| FD003  | 100          | 100         | 1              | 2           |
-| FD004  | 249          | 248         | 6              | 2           |
-
-Each subset contains 21 sensor measurements and 3 operational settings. The goal is to predict the Remaining Useful Life (RUL) of an engine or detect an impending failure.
-
-Data is located in the `data/` folder (`train_FD00X.txt`, `test_FD00X.txt`, `RUL_FD00X.txt`).
-
----
-
-## Models & Experiments
-
-### Exploratory Data Analysis
-| File | Description |
-|------|-------------|
-| `edacmapss.ipynb` | Sensor analysis, correlation heatmaps, and RUL label generation on FD001 |
-
-### Classical Machine Learning
-| File | Model | Task | Dataset | Results |
-|------|-------|------|---------|---------|
-| `RFCforCMAPSS.ipynb` | Random Forest Classifier | Binary classification (failure/normal) | FD001–FD004 | Accuracy: 91–94%, F1: 80–85%, ROC-AUC: 0.97–0.98 |
-
-### LSTM & GRU
-| File | Model | Task | Dataset | Results |
-|------|-------|------|---------|---------|
-| `Can_LSTM.ipynb` | Bidirectional LSTM | RUL prediction (regression) | FD001 | Hyperparameter tuning via GridSearchCV |
-| `abgru_all_datasets_f1.ipynb` | Attention-Based GRU | RUL prediction + multi-class (Critical/Warning/Normal) | FD001–FD004 | FD001: RMSE=13.54, R²=0.89 · FD003: RMSE=13.36, R²=0.90 |
-
-### Autoencoder-Based
-| File | Model | Task | Dataset | Description |
-|------|-------|------|---------|-------------|
-| `dae.ipynb` | Deep Autoencoder (DAE) | Anomaly detection (unsupervised) | FD001 | Learns normal engine behaviour; reconstruction error flags anomalies |
-| `vq_flow_cmapss.ipynb` | VQ-VAE + Normalizing Flow | Anomaly detection (generative) | CMAPSS | Density estimation over complex data distributions |
-
-### TCN-Based
-| File | Model | Task | Dataset | Description |
-|------|-------|------|---------|-------------|
-| `TCN AE Binary Classification CMAPSS.ipynb` | TCN Autoencoder | Binary classification | CMAPSS | Dilated convolutions + autoencoder + classification head |
-
-### Transformer-Based
-| File | Model | Task | Dataset | Description |
-|------|-------|------|---------|-------------|
-| `Transformer Classifier CMAPSS.ipynb` | Transformer Encoder | Binary classification | CMAPSS | Multi-head attention with positional encoding |
-| `hybrid_tcn_transformer_fd001.ipynb` | Hybrid TCN-Transformer | Binary classification | FD001 | TCN for feature extraction + Transformer for sequence modelling |
-| `Hybrid Transformer CMAPSS.ipynb` | Hybrid Transformer AE + Classifier | Anomaly detection | CMAPSS | Unsupervised AE branch + supervised classification head (Target: Recall ≥ 0.90, F1 ≥ 0.80) |
-| `ttsad_cmapss.ipynb` | TTSAD (TCN-Transformer-SVDD) | Binary anomaly detection | FD001–FD004 | Dilated TCN + Transformer + SVDD threshold |
-
-### Production Model
-| File | Model | Description |
-|------|-------|-------------|
-| `turbofan_final_model.py` | Deep Autoencoder + MLP Classifier | Standalone deployment-ready script. Accuracy: 93%, F1: 88%, ROC-AUC: 99% |
-
----
-
-## Project Structure
-
-```
+```text
 airplanefailureprediction/
-│
-├── data/
-│   ├── train_FD001.txt / .csv          # Training data (FD001–FD004)
-│   ├── test_FD001.txt / .csv           # Test data
-│   ├── RUL_FD001.txt                   # Ground-truth RUL values
-│   └── Damage Propagation Modeling.pdf # Reference paper
-│
-├── edacmapss.ipynb                     # Exploratory data analysis
-├── RFCforCMAPSS.ipynb                  # Random Forest classifier
-├── Can_LSTM.ipynb                      # Bidirectional LSTM (RUL prediction)
-├── abgru_all_datasets_f1.ipynb         # Attention-Based GRU (all subsets)
-├── dae.ipynb                           # Deep Autoencoder (anomaly detection)
-├── vq_flow_cmapss.ipynb                # VQ-VAE + Normalizing Flow
-├── TCN AE Binary Classification CMAPSS.ipynb
-├── Transformer Classifier CMAPSS.ipynb
-├── hybrid_tcn_transformer_fd001.ipynb
-├── Hybrid Transformer CMAPSS.ipynb
-├── ttsad_cmapss.ipynb                  # TCN-Transformer-SVDD
-│
-├── turbofan_final_model.py             # Deployment-ready final model
-└── README.md
+  data/                 C-MAPSS train/test/RUL files
+  notebooks/            Jupyter and Colab experiments
+  scripts/              Runnable Python scripts
+  article_assets/       Article tables, figures, drafts, and generated assets
+  assets/images/        Root-level diagrams and result images
+  docs/                 Notes, comparisons, and change logs
+  presentations/        Slide decks
+  archive/code_exports/ Python console exports kept for reference
+  outputs/              Local script outputs
 ```
 
----
+## Data
+
+The dataset lives in `data/`:
+
+- `train_FD001.txt` through `train_FD004.txt`
+- `test_FD001.txt` through `test_FD004.txt`
+- `RUL_FD001.txt` through `RUL_FD004.txt`
+- CSV copies for experiments that expect headered CSV files
+
+## Notebooks
+
+Most experiments are under `notebooks/`, including:
+
+- `notebooks/edacmapss.ipynb`
+- `notebooks/RFCforCMAPSS.ipynb`
+- `notebooks/Can_LSTM.ipynb`
+- `notebooks/abgru_all_datasets_f1.ipynb`
+- `notebooks/dae.ipynb`
+- `notebooks/vq_flow_cmapss.ipynb`
+- `notebooks/TCN AE Binary Classification CMAPSS.ipynb`
+- `notebooks/Transformer Classifier CMAPSS.ipynb`
+- `notebooks/Hybrid Transformer CMAPSS.ipynb`
+- `notebooks/ttsad_cmapss.ipynb`
+- `notebooks/tcn_bigru_xgboost_cmapss.ipynb`
+- `notebooks/semantic_trend_xgboost_article_ready.ipynb`
+
+Several notebooks were originally developed in Google Colab and may still point to `/content/drive/MyDrive/data`. For local runs, use the project `data/` folder or update the notebook path cell.
+
+## Scripts
+
+Runnable scripts are under `scripts/`:
+
+```bash
+python scripts/turbofan_final_model.py
+python scripts/patchtst_xgboost_cmapss.py --base data
+python scripts/engine_level_mil_tcn_bigru_xgboost.py
+python scripts/architecture_diagram.py
+```
+
+The local scripts resolve data from the project `data/` folder by default. You can override the final model paths with:
+
+```powershell
+$env:CMAPSS_DATA_DIR = "C:\path\to\data"
+$env:CMAPSS_OUTPUT_DIR = "C:\path\to\outputs"
+```
 
 ## Requirements
 
 ```bash
-pip install numpy pandas matplotlib seaborn scikit-learn torch torchvision
+pip install numpy pandas matplotlib seaborn scikit-learn torch torchvision xgboost
 ```
 
-Notebooks were developed in Google Colab (GPU-enabled). A CUDA-capable GPU is recommended for local execution; CPU works as well but is slower.
-
----
-
-## Quick Start
-
-```bash
-# 1. Clone the repo
-git clone https://github.com/<username>/airplanefailureprediction.git
-cd airplanefailureprediction
-
-# 2. Start with EDA
-jupyter notebook edacmapss.ipynb
-
-# 3. Run the final model directly
-python turbofan_final_model.py
-```
-
----
-
-## Task Definitions
-
-Two primary tasks are explored:
-
-- **RUL Prediction (Regression):** Estimate how many cycles remain before engine failure.
-- **Anomaly / Failure Detection (Classification):** Determine whether an engine is in a danger zone, using binary or multi-class labels:
-  - `Critical` — RUL < 30
-  - `Warning` — 30 ≤ RUL < 60
-  - `Normal` — RUL ≥ 60
-
----
+CUDA is recommended for deep learning experiments, but the scripts can run on CPU with longer runtimes.
 
 ## References
 
 - A. Saxena et al., "Damage Propagation Modeling for Aircraft Engine Run-to-Failure Simulation," ICAS 2008.
-- Luo et al., "TTSAD: TCN-Transformer-SVDD Model for Anomaly Detection," *Computers & Security*, 2024.
-- Jeong et al., "AnomalyBERT: Self-Supervised Transformer for Time Series Anomaly Detection," ICLR 2023.
-- [NASA CMAPSS Dataset](https://www.nasa.gov/intelligent-systems-division/discovery-and-systems-health/pcoe/pcoe-data-set-repository/)
+- NASA C-MAPSS dataset: https://www.nasa.gov/intelligent-systems-division/discovery-and-systems-health/pcoe/pcoe-data-set-repository/

@@ -20,11 +20,11 @@ Mimari:
     XGBoost Classifier
 
 Kullanim:
-    python patchtst_xgboost_cmapss.py --base /content/drive/MyDrive/data
+    python scripts/patchtst_xgboost_cmapss.py --base data
 """
 
 import argparse
-import os
+from pathlib import Path
 import warnings
 warnings.filterwarnings('ignore')
 
@@ -44,12 +44,15 @@ import xgboost as xgb
 # ─────────────────────────────────────────────────────────────────────────────
 # Argümanlar
 # ─────────────────────────────────────────────────────────────────────────────
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
 parser = argparse.ArgumentParser()
-parser.add_argument('--base', default='/content/drive/MyDrive/data')
+parser.add_argument('--base', default=str(PROJECT_ROOT / 'data'))
 parser.add_argument('--datasets', nargs='+', default=['FD001','FD002','FD003','FD004'])
 args, _ = parser.parse_known_args()
 
-BASE    = args.base
+BASE    = Path(args.base).expanduser()
+if not BASE.is_absolute() and not BASE.exists():
+    BASE = PROJECT_ROOT / BASE
 DEVICE  = 'cuda' if torch.cuda.is_available() else 'cpu'
 print(f'Device: {DEVICE}')
 
@@ -104,9 +107,9 @@ DROP_SENSORS = ['s1','s5','s6','s10','s16','s18','s19']
 
 
 def load_raw(fd):
-    train = pd.read_csv(f'{BASE}/train_{fd}.txt', sep=r'\s+', header=None, names=COLUMNS)
-    test  = pd.read_csv(f'{BASE}/test_{fd}.txt',  sep=r'\s+', header=None, names=COLUMNS)
-    rul   = pd.read_csv(f'{BASE}/RUL_{fd}.txt',   header=None, names=['RUL'])
+    train = pd.read_csv(BASE / f'train_{fd}.txt', sep=r'\s+', header=None, names=COLUMNS)
+    test  = pd.read_csv(BASE / f'test_{fd}.txt',  sep=r'\s+', header=None, names=COLUMNS)
+    rul   = pd.read_csv(BASE / f'RUL_{fd}.txt',   header=None, names=['RUL'])
     return train, test, rul
 
 

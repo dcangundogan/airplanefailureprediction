@@ -3,6 +3,7 @@
 import matplotlib.pyplot as plt
 from matplotlib.patches import FancyBboxPatch, FancyArrowPatch
 from matplotlib.lines import Line2D
+from pathlib import Path
 
 
 COLORS = {
@@ -22,6 +23,7 @@ COLORS = {
 }
 
 EDGE = "#37474F"
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
 
 def box(ax, x, y, w, h, text, face, fontsize=9, weight="normal"):
@@ -205,6 +207,7 @@ legend_handles = [
 ax.legend(handles=legend_handles, loc="lower center",
           bbox_to_anchor=(0.5, -0.085), ncol=5, frameon=False, fontsize=8.5)
 
-out_path = r"c:\Users\gundo\airplanefailureprediction\architecture_diagram.png"
+out_path = PROJECT_ROOT / "assets" / "images" / "architecture_diagram.png"
+out_path.parent.mkdir(parents=True, exist_ok=True)
 plt.savefig(out_path, dpi=200, bbox_inches="tight", facecolor="white")
 print("Saved:", out_path)

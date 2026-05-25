@@ -1,6 +1,6 @@
 # Hybrid Notebook — Değişiklik Dokümantasyonu
 
-`hybrid_tcn_bigru_attention_semantic_xgboost_cmapss.ipynb` üzerinde yapılan tüm değişikliklerin detaylı kaydı. Amaç: hibrit metodun F1 skorunu tüm CMAPSS subset'lerinde 0.90 üzerine çıkarmak ve makale-hazır ablation tablosu üretmek.
+`../notebooks/hybrid_tcn_bigru_attention_semantic_xgboost_cmapss.ipynb` üzerinde yapılan tüm değişikliklerin detaylı kaydı. Amaç: hibrit metodun F1 skorunu tüm CMAPSS subset'lerinde 0.90 üzerine çıkarmak ve makale-hazır ablation tablosu üretmek.
 
 ---
 

@@ -1,8 +1,8 @@
 # Model Karşılaştırması: TCN-GRU vs TCN-BiGRU + XGBoost
 
 **Dosyalar:**
-- `tcn_gru_xgboost_cmapss.ipynb` → **Model A** (co-author versiyonu)
-- `tcn_bigru_xgboost_cmapss.ipynb` → **Model B** (yeni versiyon)
+- `../notebooks/tcn_gru_xgboost_cmapss.ipynb` → **Model A** (co-author versiyonu)
+- `../notebooks/tcn_bigru_xgboost_cmapss.ipynb` → **Model B** (yeni versiyon)
 
 ---
 

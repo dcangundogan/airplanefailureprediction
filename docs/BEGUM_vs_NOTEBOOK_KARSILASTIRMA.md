@@ -1,4 +1,4 @@
-# BEGUM_CODE.py vs tcn_bigru_xgboost_cmapss.ipynb — Karşılaştırma
+# ../archive/code_exports/BEGUM_CODE.py vs ../notebooks/tcn_bigru_xgboost_cmapss.ipynb — Karşılaştırma
 
 İki dosya da aynı fikre dayanıyor (TCN + BiGRU + XGBoost) ama tasarım felsefeleri çok farklı. Aşağıda farklar, etkileri ve iyileştirme önerileri özetlenmiştir.
 
@@ -6,7 +6,7 @@
 
 ## 1. Veri ve Etiketleme
 
-| Konu | BEGUM_CODE.py | tcn_bigru_xgboost_cmapss.ipynb |
+| Konu | `../archive/code_exports/BEGUM_CODE.py` | `../notebooks/tcn_bigru_xgboost_cmapss.ipynb` |
 |---|---|---|
 | Dataset | **FD002** (sabit) | **FD001** default, döngüde 4'ünü de çalıştırıyor |
 | RUL threshold | **20** (daha agresif "near-failure") | **30** |
@@ -53,7 +53,7 @@
 
 ## 4. Olası Hatalar / Risk Noktaları
 
-### BEGUM_CODE.py
+### `../archive/code_exports/BEGUM_CODE.py`
 1. Encoder MSE ile sadece **son timestep'in feature vektörünü** tahmin etmeye eğitiliyor (`target = xb[:, :, -1]`) — bu RUL için zayıf bir self-supervised hedef; arızaya yakın temporal patternleri öğrenmeyi garanti etmez.
 2. Semantic feature çıkarımı **çift döngülü Python** (yavaş): büyük datasette ciddi süre alır.
 3. Eğitim sırasında AMP / mixed precision yok.

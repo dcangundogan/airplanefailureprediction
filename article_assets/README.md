@@ -18,7 +18,7 @@ Outputs:
 - `index.html`: quick browser preview of generated figures and table links.
 - `tables/`: each table as `.csv`, `.md`, and `.tex`.
 - `figures/`: standalone SVG figures suitable for conversion to PDF/PNG.
-  - `fig_tcn_bigru_xgboost_architecture_detailed.svg` is the detailed architecture from `tcn_bigru_xgboost_cmapss.ipynb`.
+  - `fig_tcn_bigru_xgboost_architecture_detailed.svg` is the detailed architecture from `../notebooks/tcn_bigru_xgboost_cmapss.ipynb`.
 
 The model result numbers are taken from existing executed notebook outputs. The
 dataset counts are computed directly from the local `data/` files.

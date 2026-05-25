@@ -24,6 +24,8 @@ from xgboost import XGBClassifier
 warnings.filterwarnings("ignore")
 
 
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+
 COLUMNS = (
     ["unit_number", "time_in_cycles"]
     + [f"op_{i}" for i in range(1, 4)]
@@ -97,9 +99,11 @@ def get_device():
 
 
 def resolve_data_dir(data_dir):
+    data_path = Path(data_dir)
     candidates = [
-        Path(data_dir),
-        Path.cwd() / data_dir,
+        data_path,
+        Path.cwd() / data_path,
+        PROJECT_ROOT / data_path,
         Path("/content/drive/MyDrive/data"),
         Path("/content/data"),
     ]

@@ -18,6 +18,8 @@ Dataset: NASA C-MAPSS
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+import os
+from pathlib import Path
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 from sklearn.neural_network import MLPClassifier
@@ -37,25 +39,28 @@ print(" 🚀 Deep Autoencoder + Classifier for Turbofan Engine Degradation")
 print("=" * 70)
 
 # ============================================================================
-# 1. GOOGLE COLAB SETUP - Mount Drive
+# 1. OPTIONAL GOOGLE COLAB SETUP
 # ============================================================================
-from google.colab import drive
-drive.mount('/content/drive')
+try:
+    from google.colab import drive
+    drive.mount('/content/drive')
+except ImportError:
+    pass
 
 # ============================================================================
 # 2. CONFIGURATION
 # ============================================================================
-BASE = "/content/drive/MyDrive/data"  # <-- UPDATE THIS PATH IF NEEDED
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+BASE = Path(os.environ.get("CMAPSS_DATA_DIR", PROJECT_ROOT / "data"))
 
 DATASET = 'FD001'  # Options: FD001, FD002, FD003, FD004
-TRAIN_PATH = f"{BASE}/train_{DATASET}.csv"
-TEST_PATH = f"{BASE}/test_{DATASET}.csv"
-RUL_PATH = f"{BASE}/RUL_{DATASET}.txt"
+TRAIN_PATH = BASE / f"train_{DATASET}.csv"
+TEST_PATH = BASE / f"test_{DATASET}.csv"
+RUL_PATH = BASE / f"RUL_{DATASET}.txt"
 
 RUL_THRESHOLD = 50  # Engines with RUL < threshold are "anomalies" (near failure)
 
 # Verify files
-import os
 print("\n📁 Checking files...")
 all_exist = True
 for path in [TRAIN_PATH, TEST_PATH, RUL_PATH]:
@@ -323,9 +328,12 @@ ax.legend()
 ax.grid(True, alpha=0.3)
 
 plt.tight_layout()
-plt.savefig('/content/model_evaluation.png', dpi=150, bbox_inches='tight')
+OUTPUT_DIR = Path(os.environ.get("CMAPSS_OUTPUT_DIR", PROJECT_ROOT / "outputs"))
+OUTPUT_DIR.mkdir(exist_ok=True)
+evaluation_path = OUTPUT_DIR / "model_evaluation.png"
+plt.savefig(evaluation_path, dpi=150, bbox_inches='tight')
 plt.show()
-print("   Saved: /content/model_evaluation.png")
+print(f"   Saved: {evaluation_path}")
 
 # ============================================================================
 # 11. FINAL SUMMARY
